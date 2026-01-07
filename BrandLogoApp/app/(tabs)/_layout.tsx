@@ -1,7 +1,7 @@
-import { Tabs } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
-import colors from "../styles/colors";
+import { Tabs } from "expo-router";
 import { Easing } from "react-native";
+import colors from "../styles/colors";
 
 export default function TabsLayout() {
   return (
@@ -38,9 +38,9 @@ export default function TabsLayout() {
       }}
     >
       <Tabs.Screen
-        name="index"
+        name="Browse"
         options={{
-          headerTitle: "Home",
+          headerTitle: "Shop",
           tabBarIcon: ({ focused, color }) => (
             <Ionicons
               name={focused ? "home-sharp" : "home-outline"}
@@ -57,9 +57,9 @@ export default function TabsLayout() {
       />
 
       <Tabs.Screen
-        name="family"
+        name="Candy"
         options={{
-          headerTitle: "Family",
+          headerTitle: "Types",
           tabBarIcon: ({ focused, color }) => (
             <Ionicons
               name={focused ? "people" : "people-outline"}
@@ -76,9 +76,9 @@ export default function TabsLayout() {
       />
 
       <Tabs.Screen
-        name="school"
+        name="Buy"
         options={{
-          headerTitle: "School",
+          headerTitle: "Checkout",
           tabBarIcon: ({ focused, color }) => (
             <Ionicons
               name={focused ? "school" : "school-outline"}

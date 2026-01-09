@@ -7,6 +7,7 @@ export default function Buy() {
   return (
     <SafeAreaView style={defaultStyles.container}>
       <Text style={defaultStyles.text}>Screen2</Text>
+      
     </SafeAreaView>
   );
 }

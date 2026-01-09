@@ -4,16 +4,17 @@ import colors from "../styles/colors";
 
 export default function AppHeader() {
   return <View style={styles.container}>
+    /** Utilized ChatGPT to figure out how to add styling to the image */
     <Image
-            source = {require("../../assets/images/icon1.png")}
-            style = {{
-              height: 45,
-              width: 45,
-              marginRight: 300,
-              marginTop: 40,
-            }}
+        source = {require("../../assets/images/icon1.png")}
+        style = {{
+            height: 45,
+            width: 45,
+            marginRight: 300,
+            marginTop: 40,
+        }}
            
-          />
+    />
     <Text style = {styles.text}>Candy Craze</Text>
   </View>;
 }

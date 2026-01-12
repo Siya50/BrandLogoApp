@@ -3,7 +3,7 @@ import colors from "./colors";
 
 const defaultStyles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex:1,
     padding: 16,
     backgroundColor: colors.light, // soft beige background
     alignItems: "center",
@@ -29,20 +29,28 @@ const defaultStyles = StyleSheet.create({
   buttonText: {
     fontSize: 18,
     fontFamily: "lucida grande",
-    color: colors.text.inverse, // light text on dark button
+    color: colors.dark, // light text on dark button
     margin: 7,
+  },
+  textfield: {
+    height: 60,
+    width: 300,
+    borderRadius: 10,
+    borderWidth: 20,
+    justifyContent: "space-around",
+    backgroundColor: colors.primary, // darker caramel button
   },
 
   buttonContainer: {
-    height: 90,
-    width: 90,
-    borderRadius: 45, // React Native requires numbers, not percentages
+    height: 70,
+    width: 300,
+    borderRadius: 15, 
     borderWidth: 3,
     borderColor: colors.border,
     justifyContent: "space-evenly",
     alignItems: "center",
     margin: 5,
-    backgroundColor: colors.secondary, // darker caramel button
+    backgroundColor: colors.light, // darker caramel button
   },
 });
 

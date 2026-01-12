@@ -1,9 +1,8 @@
 import { Ionicons } from "@expo/vector-icons";
 import { Tabs } from "expo-router";
-import { Easing } from "react-native";
-import colors from "../styles/colors";
+import { Easing, View } from "react-native";
 import AppHeader from "../components/AppHeader";
-import { View } from "react-native";
+import colors from "../styles/colors";
 
 export default function TabsLayout() {
   return (
@@ -15,11 +14,7 @@ export default function TabsLayout() {
           tabBarActiveTintColor: colors.primary,
           tabBarInactiveTintColor: colors.text.muted,
 
-          // Header styling
-          headerStyle: {
-            backgroundColor: colors.secondary,
-            height: 50,
-          },
+          headerShown: false,
           headerTintColor: colors.text.inverse,
           headerShadowVisible: false,
 
@@ -29,7 +24,7 @@ export default function TabsLayout() {
             borderRightColor: colors.border,
           },
 
-          tabBarPosition: "left",
+          tabBarPosition: "bottom",
 
           // Animation
           animation: "fade",

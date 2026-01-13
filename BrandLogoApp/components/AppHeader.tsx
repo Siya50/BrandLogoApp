@@ -1,5 +1,5 @@
-import { StyleSheet, View, Image, Text } from "react-native";
-import colors from "../styles/colors";
+import { Image, StyleSheet, Text, View } from "react-native";
+import colors from "../app/styles/colors";
 
 
 export default function AppHeader() {

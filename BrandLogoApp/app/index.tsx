@@ -1,7 +1,7 @@
 import { useRouter } from "expo-router";
 import { useState } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
-import TextField from "./components/TextField";
+import TextField from "../components/TextField";
 import defaultStyles from "./styles/defaultStyles";
 export default function Index() {
   const [username, setUsername] = useState<string>("");

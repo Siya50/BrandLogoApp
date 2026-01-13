@@ -23,12 +23,12 @@ export default function Index() {
         Candy Craze
       </Text>
       <TextField placeholder="Enter username" value={username} onChangeText={setUsername} ></TextField>
-      <TextField placeholder="Enter password" value={password} onChangeText={setPassword} ></TextField>
+      <TextField placeholder="Enter password" value={password} onChangeText={setPassword} show ></TextField>
       <TouchableOpacity
         onPress={goToHome}
         style={defaultStyles.buttonContainer}
       >
-        <Text style={defaultStyles.buttonText}>SignUp</Text>
+        <Text style={defaultStyles.buttonText}>Sign Up</Text>
       </TouchableOpacity>
       <TouchableOpacity
         onPress={goToHome}

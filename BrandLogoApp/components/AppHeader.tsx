@@ -1,10 +1,10 @@
 import { Image, StyleSheet, Text, View } from "react-native";
 import colors from "../app/styles/colors";
 
-
+/**  Utilized ChatGPT to figure out how to add styling to the image */
 export default function AppHeader() {
   return <View style={styles.container}>
-    /** Utilized ChatGPT to figure out how to add styling to the image */
+    
     <Image
         source = {require("../assets/images/icon1.png")}
         style = {{

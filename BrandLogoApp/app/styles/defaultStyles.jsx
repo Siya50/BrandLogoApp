@@ -5,10 +5,11 @@ const defaultStyles = StyleSheet.create({
   container: {
     flex:1,
     padding: 16,
+    paddingHorizontal:20,
     backgroundColor: colors.light, // soft beige background
     alignItems: "center",
     flexDirection: "column",
-    justifyContent: "space-evenly",
+    justifyContent: "center",
   },
 
   text: {
@@ -38,6 +39,7 @@ const defaultStyles = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 20,
     justifyContent: "space-around",
+    margin: 10,
     backgroundColor: colors.primary, // darker caramel button
   },
 

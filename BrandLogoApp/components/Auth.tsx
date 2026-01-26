@@ -4,8 +4,8 @@ import { Alert, Text, TouchableOpacity, View } from "react-native";
 import defaultStyles from "../app/styles/defaultStyles";
 import TextField from "../components/TextField";
 export default function Auth() {
-  const [username, setUsername] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+  const [username, setUsername] = useState<string>("@gmail.com");
+  const [password, setPassword] = useState<string>("Siya123");
   const router = useRouter();
     //Used ChatGPT to learn how to check for a number in a string
     // 1/22/26

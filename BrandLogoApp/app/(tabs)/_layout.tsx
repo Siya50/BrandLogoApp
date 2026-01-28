@@ -38,7 +38,7 @@ export default function TabsLayout() {
         }}
       >
         <Tabs.Screen
-          name="Browse"
+          name="index"
           options={{
             headerTitle: "Shop",
             headerTitleAlign: "center",

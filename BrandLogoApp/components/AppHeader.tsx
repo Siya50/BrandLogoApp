@@ -2,7 +2,7 @@ import { supabase } from '@/utils/supabase';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { useRouter } from "expo-router";
 import { Alert, Image, StyleSheet, Text, TouchableHighlight, View } from "react-native";
-import colors from "../app/styles/colors";
+import colors from "../styles/colors";
 /**  Utilized ChatGPT to figure out how to add styling to the image */
 export default function AppHeader() {
   const router = useRouter();

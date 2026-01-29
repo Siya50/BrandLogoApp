@@ -13,9 +13,9 @@ type propsType = {
 
 const Button: React.FC<propsType> = ({
   title,
-  color = colors.primary,
-  textColor = colors.secondary,
-  underlayColor = colors.light,
+  color = colors.light,
+  textColor = colors.dark,
+  underlayColor = colors.secondary,
   onPress,
 }) => {
   return (

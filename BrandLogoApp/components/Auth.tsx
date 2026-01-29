@@ -1,8 +1,8 @@
 import { useRouter } from "expo-router";
 import { useEffect, useState } from "react";
 import { Alert, AppState, AppStateStatus, Text, TouchableOpacity, View } from "react-native";
-import defaultStyles from "../app/styles/defaultStyles";
 import TextField from "../components/TextField";
+import defaultStyles from "../styles/defaultStyles";
 import { supabase } from "../utils/supabase";
 export default function Auth() {
   const [email, setEmail] = useState<string>("@gmail.com");

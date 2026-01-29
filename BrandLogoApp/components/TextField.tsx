@@ -1,8 +1,8 @@
 import { Ionicons } from "@expo/vector-icons";
 import React, { useState } from "react";
 import { Pressable, TextInput, View } from "react-native";
-import colors from "../app/styles/colors";
-import defaultStyles from "../app/styles/defaultStyles";
+import colors from "../styles/colors";
+import defaultStyles from "../styles/defaultStyles";
 /*
 This component is similar to the TextInput but allows
 the user to pass in a state var and its update function

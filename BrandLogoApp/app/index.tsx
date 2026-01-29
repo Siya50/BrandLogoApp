@@ -3,7 +3,7 @@ import { useAuth } from "@/components/AuthProvider";
 import { useRouter } from "expo-router";
 import { useEffect } from "react";
 import { ActivityIndicator, View } from "react-native";
-import defaultStyles from "./styles/defaultStyles";
+import defaultStyles from "../styles/defaultStyles";
 
 /*
   This screen is the app's gatekeeper.

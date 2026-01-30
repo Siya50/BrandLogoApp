@@ -37,6 +37,5 @@ export default function Index() {
     <View style = {defaultStyles.container}>
       <Auth/>
     </View>
-  
   );
 }

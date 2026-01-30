@@ -9,7 +9,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import defaultStyles from "../../styles/defaultStyles";
 
 export default function Index() {
-    const { session, isLoading: authLoading } = useAuth(); // AuthProvider provides session. :contentReference[oaicite:4]{index=4}
+  const { session, isLoading: authLoading } = useAuth(); // AuthProvider provides session. :contentReference[oaicite:4]{index=4}
 
   // Local form state
   const [firstName, setFirstName] = useState("");

@@ -1,73 +1,137 @@
 import { useAuth } from "@/components/AuthProvider";
 import { supabase } from "@/utils/supabase";
 import React, { useEffect, useState } from "react";
-import { Alert, Text } from "react-native";
+import { RefreshControl, ScrollView, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import defaultStyles from "../../styles/defaultStyles";
-export default async function Candy() {
- const { session, isLoading: authLoading } = useAuth(); // AuthProvider provides session. :contentReference[oaicite:4]{index=4}
-
-  // Local form state
+export default function Candy() {
+  const { session, isLoading: authLoading } = useAuth(); 
+  const [refreshing, setRefreshing] = useState(false);
+  const [candyPercent, setCandyPercent] = useState<number | null>(null);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [candy, setCandy] = useState("");
   const [loading, setLoading] = useState(false); // screen action loading
   const [initialLoading, setInitialLoading] = useState(true); // loading while fetching profile
+  //used ChatGPT to modify useEffect to load candy data, create refresh function, and add stat for % of all users
+  //https://chatgpt.com/share/6980ed73-1334-8013-b08b-c7107757f5bb
+   async function loadProfile() {
+    if (!session?.user) return;
+
+    try {
+      const { data } = await supabase
+        .from("profiles")
+        .select("first_name, last_name, fav_candy")
+        .eq("id", session.user.id)
+        .single();
+
+      if (data) {
+        const fav = data.fav_candy ?? "";
+
+        setFirstName(data.first_name ?? "");
+        setLastName(data.last_name ?? "");
+        setCandy(fav);
+
+        await loadCandyStats(fav);
+      }
+    } 
+    catch (err) {
+      console.warn(err);
+    }
+  }
+  async function loadCandyStats(userFavCandy: string) {
+  if (!userFavCandy) return;
+
+  try {
+    // Count users with same favorite candy
+    const { count: sameCandyCount } = await supabase
+      .from("profiles")
+      .select("*", { count: "exact", head: true })
+      .eq("fav_candy", userFavCandy);
+
+    // Count total users
+    const { count: totalUsers } = await supabase
+      .from("profiles")
+      .select("*", { count: "exact", head: true });
+
+    if (sameCandyCount && totalUsers && totalUsers > 0) {
+      const percent = (sameCandyCount / totalUsers) * 100;
+      setCandyPercent(percent);
+    } else {
+      setCandyPercent(0);
+    }
+  } catch (err) {
+    console.warn("Candy stat error:", err);
+  }
+}
+
+  const onRefresh = async () => {
+    setRefreshing(true);
+    await loadProfile();
+    setRefreshing(false);
+  };
 
   useEffect(() => {
-    let mounted = true;
+  let mounted = true;
+  let channel: any;
 
-    async function loadProfile() {
-      if (!session?.user) {
-        // no user signed in (shouldn't happen in a protected route)
-        if (mounted) setInitialLoading(false);
-        return;
-      }
-      setInitialLoading(true);
-      try {
-        const userId = session.user.id;
+  
+  loadProfile();
 
-        // Read the profile row. We expect a single row matched by id.
-        const { data, error } = await supabase
-          .from("profiles")
-          .select("first_name, last_name, fav_candy")
-          .eq("id", userId)
-          .single();
+  if (session?.user) {
+  channel = supabase
+    .channel(`profile-${session.user.id}`)
+    .on(
+      "postgres_changes",
+      {
+        event: "UPDATE",
+        schema: "public",
+        table: "profiles",
+        filter: `id=eq.${session.user.id}`,
+      },
+      (payload) => {
+        console.log("Realtime payload:", payload);
 
-        if (error) {
-          // No row found is okay (trigger created an empty row—may be null),
-          // but show the error if it's unexpected.
-          console.warn("loadProfile error:", error);
-          // If there's no data but no error.code, data can be null; we handle that below.
+        const updated = payload.new;
+
+        if (updated) {
+          setFirstName(updated.first_name ?? "");
+          setLastName(updated.last_name ?? "");
+          const fav = updated.fav_candy ?? "";
+          setCandy(fav);
+          loadCandyStats(fav);
         }
-
-        if (mounted && data) {
-          setFirstName(data.first_name ?? "");
-          setLastName(data.last_name ?? "");
-          setCandy(data.fav_candy ?? "");
-        }
-      } catch (err) {
-        console.warn("loadProfile exception:", err);
-        Alert.alert("Failed to load profile. Check your network or try again.");
-      } finally {
-        if (mounted) setInitialLoading(false);
       }
+    )
+    .subscribe();
+}
+
+  return () => {
+    mounted = false;
+
+    if (channel) {
+      supabase.removeChannel(channel);
     }
-
-    loadProfile();
-    return () => {
-      mounted = false;
-    };
-    
-  }, [session]);
-
+  };
+}, [session]);
 
   
 
   return (
     <SafeAreaView style={defaultStyles.container}>
-      <Text style={defaultStyles.titleText}>Favorite Candy Stats</Text>
-      <Text>Your favorite candy is: {candy} </Text>
+       <ScrollView
+      refreshControl={
+        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+      }
+    >
+        <Text style={defaultStyles.titleText}>Favorite Candy Stats</Text>
+        <Text>Your favorite candy is: {candy} </Text>
+        {candyPercent !== null && (
+        <Text>
+          {candyPercent.toFixed(1)}% of all users also picked {candy}
+        </Text>
+      )}
+      </ScrollView>
     </SafeAreaView>
   );
 }

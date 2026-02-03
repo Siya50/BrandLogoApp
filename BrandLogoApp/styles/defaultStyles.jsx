@@ -54,6 +54,9 @@ const defaultStyles = StyleSheet.create({
     margin: 5,
     backgroundColor: colors.light, // darker caramel button
   },
+  quizContainers: {
+    flexDirection: "row",
+  },
 });
 
 export default defaultStyles;

@@ -8,13 +8,13 @@ type propsType = {
   color?: string; // optional prop, we will give it a default value
   textColor?: string; // optional
   underlayColor?: string;
-  onPress: () => void;
+  onPress?: () => void;
 };
 
 const Button: React.FC<propsType> = ({
   title,
-  color = colors.light,
-  textColor = colors.dark,
+  color = colors.primary,
+  textColor = colors.light,
   underlayColor = colors.secondary,
   onPress,
 }) => {
@@ -33,18 +33,19 @@ export default Button;
 
 const styles = StyleSheet.create({
   buttonContainer: {
-    height: 30,
-    width: 120,
+    height: 60,
+    width: 160,
     borderWidth: 2,
     borderRadius: 10,
     borderColor: colors.light,
-    // justifyContent: "center",
+    justifyContent: "center",
     alignItems: "center",
     //marginStart: 10,
     marginTop: 10,
     marginHorizontal: 5,
   },
   buttonText: {
-    fontSize: 16,
+    fontSize: 20,
+    fontFamily: "Georgia-Bold",
   },
 });

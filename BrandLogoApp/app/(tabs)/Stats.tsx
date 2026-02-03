@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { RefreshControl, ScrollView, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import defaultStyles from "../../styles/defaultStyles";
-export default function Candy() {
+export default function Stats() {
   const { session, isLoading: authLoading } = useAuth(); 
   const [refreshing, setRefreshing] = useState(false);
   const [candyPercent, setCandyPercent] = useState<number | null>(null);

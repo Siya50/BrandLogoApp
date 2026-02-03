@@ -2,7 +2,7 @@ import Auth from "@/components/Auth";
 import { useAuth } from "@/components/AuthProvider";
 import { Ionicons } from "@expo/vector-icons";
 import { Tabs } from "expo-router";
-import { Easing, View } from "react-native";
+import { View } from "react-native";
 import AppHeader from "../../components/AppHeader";
 import colors from "../../styles/colors";
 export default function TabsLayout() {
@@ -36,15 +36,7 @@ export default function TabsLayout() {
 
           tabBarPosition: "bottom",
 
-          // Animation
-          animation: "fade",
-          transitionSpec: {
-            animation: "timing",
-            config: {
-              duration: 500,
-              easing: Easing.inOut(Easing.ease),
-            },
-          },
+        
         }}
       >
         <Tabs.Screen
@@ -74,7 +66,7 @@ export default function TabsLayout() {
         />
 
         <Tabs.Screen
-          name="Candy"
+          name="Stats"
           options={{
             headerTitle: "Types",
             headerTitleAlign: "center",
@@ -97,7 +89,7 @@ export default function TabsLayout() {
         />
 
         <Tabs.Screen
-          name="Buy"
+          name="Picker"
           options={{
             headerTitle: "Checkout",
             headerTitleAlign: "center",

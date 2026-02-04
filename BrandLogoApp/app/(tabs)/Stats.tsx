@@ -1,4 +1,5 @@
 import { useAuth } from "@/components/AuthProvider";
+import colors from "@/styles/colors";
 import { supabase } from "@/utils/supabase";
 import React, { useEffect, useState } from "react";
 import { RefreshControl, ScrollView, Text } from "react-native";
@@ -125,12 +126,15 @@ export default function Stats() {
       }
     >
         <Text style={defaultStyles.titleText}>Favorite Candy Stats</Text>
-        <Text>Your favorite candy is: {candy} </Text>
-        {candyPercent !== null && (
-        <Text>
-          {candyPercent.toFixed(1)}% of all users also picked {candy}
-        </Text>
+    
+          <Text style={[defaultStyles.titleText, {color: colors.dark}, {fontSize: 16}, {fontFamily: "Georgia"}]}>Your favorite candy is: {candy} </Text>
+          {candyPercent !== null && (
+          <Text style={[defaultStyles.titleText, {color: colors.dark}, {fontSize: 16}, {fontFamily: "Georgia"}]}>
+            You are part of the {candyPercent.toFixed(1)}% of users who picked {candy}
+          </Text>
+          
       )}
+   
       </ScrollView>
     </SafeAreaView>
   );
